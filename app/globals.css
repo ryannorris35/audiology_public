@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nav-height: 76px;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: #CDCECF;
+  color: #191B1D;
+}
+
+/* Headings in black for maximum contrast and readability */
+h1, h2, h3, h4, h5, h6 {
+  color: #191B1D;
+}
+
+/* Visible focus ring for keyboard navigation, important for an older audience */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #C17F59;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Larger base type sizing across the site to suit a more mature audience */
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 17px;
+  }
+}
+
+/* Soundwave divider, the site's recurring signature motif */
+.soundwave-divider {
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.soundwave-divider span {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  background-color: currentColor;
+  opacity: 0.55;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  background: #CDCECF;
+  color: #F6F1EA;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+}
