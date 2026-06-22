@@ -8,7 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "db:init": "tsx scripts/init-db.ts",
-    "db:test": "tsx scripts/test-db.ts"
+    "db:test": "tsx scripts/test-db.ts",
+    "test": "playwright test",
+    "test:smoke": "playwright test --project=smoke-chromium --project=smoke-firefox --project=smoke-webkit",
+    "test:regression": "playwright test --project=regression --project=regression-mobile",
+    "test:api": "playwright test --project=api",
+    "test:unit": "playwright test --project=unit",
+    "test:report": "playwright show-report"
   },
   "dependencies": {
     "mongoose": "^8.4.0",
@@ -19,6 +25,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@types/node": "^20.14.2",
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18.3.3",
