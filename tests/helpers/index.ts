@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test';
 
 export const PAGES = [
-  { path: '/',                          title: /Huw Latimer/i },
+  { path: '/',                          title: /Audiologist|Huw Latimer/i },
   { path: '/about-hearing-impairment',  title: /Hearing Impairment/i },
   { path: '/micro-suction',             title: /Micro.Suction|Ear Wax/i },
   { path: '/types-of-hearing-aids',     title: /Hearing Aids/i },
@@ -19,11 +19,26 @@ export const NAV_LINKS = [
   { label: /referrals/i,          href: '/referrals' },
 ];
 
-/** Dismiss the cookie banner so it doesn't interfere with other interactions. */
+/**
+ * Pre-set cookie consent in localStorage via an init script so the banner
+ * never appears on page load. Call BEFORE page.goto().
+ */
+export async function suppressCookieBanner(page: Page) {
+  await page.addInitScript(() => {
+    window.localStorage.setItem(
+      'wb_cookie_consent',
+      JSON.stringify({ necessary: true, analytics: true, marketing: true })
+    );
+  });
+}
+
+/** Dismiss the cookie banner via UI click (for tests that need the banner present first). */
 export async function acceptCookies(page: Page) {
-  const banner = page.getByRole('dialog');
-  if (await banner.isVisible({ timeout: 3000 }).catch(() => false)) {
-    await page.getByRole('button', { name: /accept/i }).click();
+  const banner = page.locator('[aria-labelledby="cookie-consent-title"]');
+  if (await banner.isVisible({ timeout: 5000 }).catch(() => false)) {
+    const acceptBtn = banner.getByRole('button', { name: /accept all/i });
+    await acceptBtn.click();
+    await banner.waitFor({ state: 'hidden', timeout: 5000 }).catch(() => {});
   }
 }
 

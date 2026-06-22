@@ -253,7 +253,7 @@ export default function BookingForm({ dict, locale }: BookingFormProps) {
 }
 
 function inputClass(hasError: boolean) {
-  return `w-full rounded-lg border bg-linen px-3 py-2 text-bark focus:outline-none ${
+  return `w-full rounded-lg border bg-linen px-3 py-2 font-normal text-bark focus:outline-none ${
     hasError ? 'border-red-500' : 'border-sand-dark'
   }`;
 }
@@ -269,11 +269,13 @@ interface FieldProps {
 function Field({ label, required, error, className = '', children }: FieldProps) {
   return (
     <div className={`relative ${className}`}>
-      <label className="mb-1 block text-sm font-semibold text-bark">
-        {label}
-        {required && <span className="text-clay-dark"> *</span>}
+      <label className="block text-sm font-semibold text-bark">
+        <span className="mb-1 block">
+          {label}
+          {required && <span className="text-clay-dark"> *</span>}
+        </span>
+        {children}
       </label>
-      {children}
       {error && (
         <p role="alert" className="mt-1 rounded-md bg-red-600 px-2 py-1 text-xs text-white shadow-sm">
           {error}

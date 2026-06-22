@@ -8,7 +8,10 @@ const referralSchema = z.object({
   referrerFirstName: z.string().trim().min(1).max(100),
   referrerLastName: z.string().trim().min(1).max(100),
   referrerEmail: z.string().trim().email().max(254),
-  referrerPhone: z.string().trim().max(30).optional().or(z.literal('')),
+  referrerPhone: z.union([
+    z.string().trim().regex(/^[+()\d\s-]{7,20}$/).max(30),
+    z.literal(''),
+  ]).optional(),
   patientName: z.string().trim().min(1).max(200),
 });
 

@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
 import {
-  acceptCookies,
+  suppressCookieBanner,
   mockBookingSuccess,
   mockBookingFailure,
   mockVisitorApi,
 } from '../helpers';
 
 test.beforeEach(async ({ page }) => {
+  await suppressCookieBanner(page);
   await mockVisitorApi(page);
   await mockBookingSuccess(page);
   await page.goto('/book-appointment');
-  await acceptCookies(page);
 });
 
 async function fillValidForm(page: import('@playwright/test').Page) {
@@ -41,7 +41,7 @@ test('invalid email shows validation error', async ({ page }) => {
   await page.getByLabel(/email/i).fill('not-an-email');
   await page.getByLabel(/phone/i).fill('+44 7700 900123');
   await page.getByRole('button', { name: /confirm appointment/i }).click();
-  await expect(page.getByRole('alert')).toContainText(/valid email/i);
+  await expect(page.locator('p[role="alert"]')).toContainText(/valid email/i);
 });
 
 test('invalid phone shows validation error', async ({ page }) => {
@@ -50,7 +50,7 @@ test('invalid phone shows validation error', async ({ page }) => {
   await page.getByLabel(/email/i).fill('jane@example.com');
   await page.getByLabel(/phone/i).fill('abc');
   await page.getByRole('button', { name: /confirm appointment/i }).click();
-  await expect(page.getByRole('alert')).toContainText(/valid phone/i);
+  await expect(page.locator('p[role="alert"]')).toContainText(/valid phone/i);
 });
 
 test('valid form submission shows success state', async ({ page }) => {
@@ -77,7 +77,7 @@ test('API error shows generic error message', async ({ page }) => {
   await mockBookingFailure(page);
   await fillValidForm(page);
   await page.getByRole('button', { name: /confirm appointment/i }).click();
-  await expect(page.getByRole('alert')).toContainText(/went wrong/i);
+  await expect(page.locator('p[role="alert"]')).toContainText(/went wrong/i);
 });
 
 test('submit button shows loading state during submission', async ({ page }) => {
@@ -105,5 +105,5 @@ test('date of birth field rejects future dates', async ({ page }) => {
   await page.getByLabel(/email/i).fill('jane@example.com');
   await page.getByLabel(/phone/i).fill('+44 7700 900123');
   await page.getByRole('button', { name: /confirm appointment/i }).click();
-  await expect(page.getByRole('alert')).toContainText(/valid.*date|date.*birth/i);
+  await expect(page.locator('p[role="alert"]')).toContainText(/valid.*date|date.*birth/i);
 });

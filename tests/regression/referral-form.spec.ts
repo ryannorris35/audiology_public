@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
 import {
-  acceptCookies,
+  suppressCookieBanner,
   mockReferralSuccess,
   mockReferralFailure,
   mockVisitorApi,
 } from '../helpers';
 
 test.beforeEach(async ({ page }) => {
+  await suppressCookieBanner(page);
   await mockVisitorApi(page);
   await mockReferralSuccess(page);
   await page.goto('/referrals');
-  await acceptCookies(page);
 });
 
 async function fillValidReferral(page: import('@playwright/test').Page) {
@@ -52,7 +52,7 @@ test('invalid email shows validation error', async ({ page }) => {
   await page.getByLabel(/your email/i).fill('not-valid');
   await page.getByLabel(/full name of the person/i).fill('Mary Jones');
   await page.getByRole('button', { name: /submit referral/i }).click();
-  await expect(page.getByRole('alert')).toContainText(/valid email/i);
+  await expect(page.locator('p[role="alert"]')).toContainText(/valid email/i);
 });
 
 test('optional phone field validates format when filled', async ({ page }) => {
@@ -62,14 +62,14 @@ test('optional phone field validates format when filled', async ({ page }) => {
   await page.getByLabel(/phone/i).fill('not-a-phone');
   await page.getByLabel(/full name of the person/i).fill('Mary Jones');
   await page.getByRole('button', { name: /submit referral/i }).click();
-  await expect(page.getByRole('alert')).toContainText(/valid phone/i);
+  await expect(page.locator('p[role="alert"]')).toContainText(/valid phone/i);
 });
 
 test('valid submission shows success message', async ({ page }) => {
   await fillValidReferral(page);
   await page.getByRole('button', { name: /submit referral/i }).click();
   await expect(page.getByText(/referral received/i)).toBeVisible();
-  await expect(page.getByText(/£30/i)).toBeVisible();
+  await expect(page.getByText(/£30 reward once they attend/i)).toBeVisible();
 });
 
 test('success state shows Return to Home button in black', async ({ page }) => {
@@ -84,7 +84,7 @@ test('API error shows generic error message', async ({ page }) => {
   await mockReferralFailure(page);
   await fillValidReferral(page);
   await page.getByRole('button', { name: /submit referral/i }).click();
-  await expect(page.getByRole('alert')).toContainText(/went wrong/i);
+  await expect(page.locator('p[role="alert"]')).toContainText(/went wrong/i);
 });
 
 test('phone field is optional — form submits without it', async ({ page }) => {
