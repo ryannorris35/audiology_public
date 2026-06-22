@@ -4,6 +4,7 @@ export interface NavDictionary {
   microSuction: string;
   hearingAids: string;
   contact: string;
+  referrals: string;
   bookAppointment: string;
   language: string;
   menu: string;
@@ -138,6 +139,36 @@ export interface BookingDictionary {
   backHome: string;
 }
 
+export interface ReferralDictionary {
+  title: string;
+  heroSubtitle: string;
+  rewardBadge: string;
+  aboutTitle: string;
+  aboutBody: string;
+  howTitle: string;
+  steps: { heading: string; body: string }[];
+  formTitle: string;
+  fields: {
+    referrerFirstName: string;
+    referrerLastName: string;
+    referrerEmail: string;
+    referrerPhone: string;
+    patientName: string;
+  };
+  requiredHint: string;
+  errors: {
+    required: string;
+    invalidEmail: string;
+    invalidPhone: string;
+    generic: string;
+  };
+  submit: string;
+  submitting: string;
+  successTitle: string;
+  successMessage: string;
+  backHome: string;
+}
+
 export interface Dictionary {
   locale: string;
   meta: {
@@ -154,6 +185,7 @@ export interface Dictionary {
   hearingAids: HearingAidsDictionary;
   contact: ContactDictionary;
   booking: BookingDictionary;
+  referral: ReferralDictionary;
 }
 
 // Used for non-English locale files: every page-chrome string (navigation,

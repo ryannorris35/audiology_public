@@ -14,23 +14,23 @@ interface SocialCardsProps {
 const SOCIAL_STATS = [
   {
     name: 'Facebook',
-    handle: '@willowbrookhearingcare',
+    handle: 'Huw Latimer Audiology',
     likes: 482,
-    href: 'https://www.facebook.com/willowbrookhearingcare',
+    href: 'https://www.facebook.com/profile.php?id=61590933583878',
     color: 'bg-[#1877F2]',
   },
   {
     name: 'Instagram',
-    handle: '@willowbrookhearingcare',
+    handle: '@huwlatimeraudiologist',
     likes: 311,
-    href: 'https://www.instagram.com/willowbrookhearingcare',
+    href: 'https://www.instagram.com/huwlatimeraudiologist/',
     color: 'bg-[#E1306C]',
   },
   {
     name: 'LinkedIn',
     handle: 'Huw Latimer Hearing Care',
     likes: 128,
-    href: 'https://www.linkedin.com/company/willowbrook-hearing-care',
+    href: 'https://www.linkedin.com/in/huw-latimer-125821418/',
     color: 'bg-[#0A66C2]',
   },
 ];

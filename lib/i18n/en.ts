@@ -13,6 +13,7 @@ const en: Dictionary = {
     microSuction: 'Micro-Suction',
     hearingAids: 'Hearing Aids',
     contact: 'Contact',
+    referrals: 'Referrals',
     bookAppointment: 'Book Appointment',
     language: 'Language',
     menu: 'Menu',
@@ -239,7 +240,7 @@ const en: Dictionary = {
     detailsTitle: 'Contact Details',
     name: 'Huw Latimer',
     role: 'Registered Hearing Care Practitioner',
-    email: 'jordan@willowbrookhearing.co.uk',
+    email: 'huw.latimer.audiologist@gmail.com',
     phone: '+44 1234 567 890',
     address: 'Viney Hearing Care, High Street, Newtown, United Kingdom',
     aboutMeTitle: 'About Me',
@@ -300,6 +301,56 @@ const en: Dictionary = {
     successMessage:
       'Thank you. A confirmation email has been sent to the address you provided, including the clinic location and what to bring with you.',
     addToCalendar: 'Add to Google Calendar',
+    backHome: 'Return to Home',
+  },
+  referral: {
+    title: 'Refer a Friend',
+    heroSubtitle:
+      'Know someone who could benefit from better hearing? Refer them to us and earn £30 for every successful appointment.',
+    rewardBadge: 'Earn £30 per referral',
+    aboutTitle: 'What is the referral programme?',
+    aboutBody:
+      'Our referral programme rewards you for helping others discover the life-changing benefits of professional hearing care. When you refer a friend, family member, or colleague to Huw Latimer Hearing Care and they attend their appointment, we will send you a £30 reward as a thank-you for your trust in us. There is no limit to how many people you can refer — every successful appointment earns you another £30.',
+    howTitle: 'How does it work?',
+    steps: [
+      {
+        heading: '1. Fill in the form',
+        body: 'Enter your details and the name of the person you are referring using the secure form below.',
+      },
+      {
+        heading: '2. We get in touch',
+        body: 'Our team will contact the person you have referred to arrange a convenient appointment.',
+      },
+      {
+        heading: '3. They attend',
+        body: 'Once they attend their appointment your referral is confirmed and we will let you know.',
+      },
+      {
+        heading: '4. You get paid',
+        body: 'We will send you your £30 reward directly as a thank-you for spreading the word.',
+      },
+    ],
+    formTitle: 'Make a referral',
+    fields: {
+      referrerFirstName: 'Your first name',
+      referrerLastName: 'Your last name',
+      referrerEmail: 'Your email address',
+      referrerPhone: 'Your phone number (optional)',
+      patientName: 'Full name of the person you are referring',
+    },
+    requiredHint:
+      'Fields marked with * are required. We will never share your details or those of the person you refer with any third party.',
+    errors: {
+      required: 'This field is required.',
+      invalidEmail: 'Please enter a valid email address.',
+      invalidPhone: 'Please enter a valid phone number.',
+      generic: 'Something went wrong. Please try again.',
+    },
+    submit: 'Submit Referral',
+    submitting: 'Sending...',
+    successTitle: 'Referral received — thank you!',
+    successMessage:
+      'We have received your referral and will be in touch with them shortly to arrange an appointment. A confirmation has been sent to your email address. You will receive your £30 reward once they attend.',
     backHome: 'Return to Home',
   },
 };

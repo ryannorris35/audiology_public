@@ -56,6 +56,7 @@ export default function CookieConsent({ dict }: CookieConsentProps) {
 
   function save(consent: ConsentState) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    window.dispatchEvent(new CustomEvent('wb-consent-changed', { detail: consent }));
     setView('hidden');
   }
 
@@ -93,21 +94,21 @@ export default function CookieConsent({ dict }: CookieConsentProps) {
               <button
                 type="button"
                 onClick={() => setView('customize')}
-                className="rounded-full border border-sage-500 px-4 py-2 text-sm font-medium text-sage-700 hover:bg-sage-50"
+                className="rounded-full border border-sage-500 px-4 py-2 text-sm font-medium text-black hover:bg-sage-50"
               >
                 {dict.cookie.moreInfo}
               </button>
               <button
                 type="button"
                 onClick={declineNonEssential}
-                className="rounded-full border border-sage-500 px-4 py-2 text-sm font-medium text-sage-700 hover:bg-sage-50"
+                className="rounded-full border border-sage-500 px-4 py-2 text-sm font-medium text-black hover:bg-sage-50"
               >
                 {dict.cookie.decline}
               </button>
               <button
                 type="button"
                 onClick={acceptAll}
-                className="rounded-full bg-sage px-4 py-2 text-sm font-semibold text-linen hover:bg-sage-700"
+                className="rounded-full bg-sage px-4 py-2 text-sm font-semibold text-black hover:bg-sage-700"
               >
                 {dict.cookie.accept}
               </button>
@@ -146,14 +147,14 @@ export default function CookieConsent({ dict }: CookieConsentProps) {
               <button
                 type="button"
                 onClick={() => setView('banner')}
-                className="rounded-full border border-sage-500 px-4 py-2 text-sm font-medium text-sage-700 hover:bg-sage-50"
+                className="rounded-full border border-sage-500 px-4 py-2 text-sm font-medium text-black hover:bg-sage-50"
               >
                 {dict.cookie.back}
               </button>
               <button
                 type="button"
                 onClick={savePreferences}
-                className="rounded-full bg-sage px-4 py-2 text-sm font-semibold text-linen hover:bg-sage-700"
+                className="rounded-full bg-sage px-4 py-2 text-sm font-semibold text-black hover:bg-sage-700"
               >
                 {dict.cookie.save}
               </button>

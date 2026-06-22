@@ -43,6 +43,7 @@ export default function Navbar({ dict, locale }: NavbarProps) {
     { href: '/micro-suction', label: dict.nav.microSuction },
     { href: '/types-of-hearing-aids', label: dict.nav.hearingAids },
     { href: '/contact', label: dict.nav.contact },
+    { href: '/referrals', label: dict.nav.referrals },
   ];
 
   return (
@@ -53,14 +54,20 @@ export default function Navbar({ dict, locale }: NavbarProps) {
         </Link>
 
         {/* Desktop navigation */}
-        <nav aria-label={dict.nav.menu} className="hidden items-baseline gap-4 lg:flex">
-          {links.map((link) => {
+        <nav aria-label={dict.nav.menu} className="hidden items-baseline lg:flex">
+          {links.map((link, index) => {
             const active = pathname === link.href;
+            const marginLeft =
+              index === 0 ? 'ml-0' :
+              index === 1 ? 'ml-8' :
+              index === 2 ? 'ml-2' :
+              index === 5 ? 'ml-[21px]' :
+              'ml-4';
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-body text-sm transition-colors hover:text-clay-light ${
+                className={`font-body text-sm transition-colors hover:text-clay-light ${marginLeft} ${
                   active ? 'border-b-2 border-clay text-bark' : 'text-bark'
                 }`}
               >
@@ -68,10 +75,10 @@ export default function Navbar({ dict, locale }: NavbarProps) {
               </Link>
             );
           })}
-          <LanguageSwitcher currentLocale={locale} label={dict.nav.language} />
+          <div className="ml-12"><LanguageSwitcher currentLocale={locale} label={dict.nav.language} /></div>
           <Link
             href="/book-appointment"
-            className="rounded-full bg-[#191B1D] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#2a2d33]"
+            className="ml-12 rounded-full bg-[#191B1D] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#2a2d33]"
           >
             {dict.nav.bookAppointment}
           </Link>

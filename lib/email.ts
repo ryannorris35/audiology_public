@@ -33,7 +33,7 @@ interface BookingEmailDetails {
  */
 export async function sendBookingConfirmation(details: BookingEmailDetails) {
   const transporter = getTransporter();
-  const from = process.env.SMTP_FROM || 'no-reply@willowbrookhearing.co.uk';
+  const from = process.env.SMTP_FROM || 'huw.latimer.audiologist@gmail.com';
 
   const subject = 'Your appointment request — Huw Latimer Hearing Care';
   const html = `
@@ -72,6 +72,89 @@ export async function sendBookingConfirmation(details: BookingEmailDetails) {
     html,
   });
 
+  return { sent: true };
+}
+
+interface ReferralEmailDetails {
+  referrerFirstName: string;
+  referrerLastName: string;
+  referrerEmail: string;
+  referrerPhone?: string;
+  patientName: string;
+}
+
+export async function sendReferralNotification(details: ReferralEmailDetails) {
+  const transporter = getTransporter();
+  const notifyEmail = process.env.NOTIFY_EMAIL;
+  const from = process.env.SMTP_FROM || 'huw.latimer.audiologist@gmail.com';
+
+  if (!notifyEmail) {
+    // eslint-disable-next-line no-console
+    console.log('--- NOTIFY_EMAIL not set: referral notification below was not sent ---');
+    // eslint-disable-next-line no-console
+    console.log(details);
+    return { sent: false };
+  }
+
+  const subject = `New Referral — ${details.referrerFirstName} ${details.referrerLastName}`;
+  const html = `
+    <div style="font-family: sans-serif; color: #3B332C; line-height: 1.6;">
+      <h2 style="color: #5E7349;">New Referral Received</h2>
+      <p>A new referral has been submitted via the website.</p>
+      <table style="border-collapse: collapse; width: 100%; max-width: 480px;">
+        <tr><td style="padding: 6px 0; font-weight: bold;">Referrer name</td><td style="padding: 6px 0;">${details.referrerFirstName} ${details.referrerLastName}</td></tr>
+        <tr><td style="padding: 6px 0; font-weight: bold;">Referrer email</td><td style="padding: 6px 0;">${details.referrerEmail}</td></tr>
+        <tr><td style="padding: 6px 0; font-weight: bold;">Referrer phone</td><td style="padding: 6px 0;">${details.referrerPhone || '—'}</td></tr>
+        <tr><td style="padding: 6px 0; font-weight: bold;">Referred patient</td><td style="padding: 6px 0;">${details.patientName}</td></tr>
+        <tr><td style="padding: 6px 0; font-weight: bold;">Submitted at</td><td style="padding: 6px 0;">${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}</td></tr>
+      </table>
+      <p style="margin-top: 16px;">Please reach out to <strong>${details.patientName}</strong> to arrange their appointment.</p>
+    </div>
+  `;
+
+  if (!transporter) {
+    // eslint-disable-next-line no-console
+    console.log('--- SMTP not configured: referral notification email below was not sent ---');
+    // eslint-disable-next-line no-console
+    console.log({ to: notifyEmail, subject, html });
+    return { sent: false };
+  }
+
+  await transporter.sendMail({ from, to: notifyEmail, subject, html });
+  return { sent: true };
+}
+
+export async function sendReferralConfirmation(details: ReferralEmailDetails) {
+  const transporter = getTransporter();
+  const from = process.env.SMTP_FROM || 'huw.latimer.audiologist@gmail.com';
+
+  const subject = 'Your referral has been received — Huw Latimer Hearing Care';
+  const html = `
+    <div style="font-family: sans-serif; color: #3B332C; line-height: 1.6;">
+      <h2 style="color: #5E7349;">Thank you, ${details.referrerFirstName}!</h2>
+      <p>We have received your referral for <strong>${details.patientName}</strong>.</p>
+      <p>Here is a summary of what happens next:</p>
+      <ul>
+        <li>Our team will contact <strong>${details.patientName}</strong> to arrange a convenient appointment.</li>
+        <li>Once they attend, your referral will be confirmed and we will notify you.</li>
+        <li>You will receive your <strong>£30 reward</strong> shortly after their appointment takes place.</li>
+      </ul>
+      <p>If you have any questions in the meantime, please do not hesitate to get in touch.</p>
+      <p style="font-size: 0.85em; color: #5C5147; margin-top: 24px;">
+        If you did not submit this referral, please contact us so we can remove your details.
+      </p>
+    </div>
+  `;
+
+  if (!transporter) {
+    // eslint-disable-next-line no-console
+    console.log('--- SMTP not configured: referral confirmation email below was not sent ---');
+    // eslint-disable-next-line no-console
+    console.log({ to: details.referrerEmail, subject, html });
+    return { sent: false };
+  }
+
+  await transporter.sendMail({ from, to: details.referrerEmail, subject, html });
   return { sent: true };
 }
 

@@ -1,6 +1,15 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getDictionary } from '@/lib/i18n/getDictionary';
+
+export const metadata: Metadata = {
+  title: 'Audiologist Swansea | Ear Wax Removal & Hearing Aids',
+  description:
+    'Huw Latimer is a registered hearing care practitioner based in Swansea. Offering micro-suction ear wax removal, hearing assessments and hearing aid fittings. Book online today.',
+  alternates: { canonical: '/' },
+  openGraph: { title: 'Huw Latimer Hearing Care Swansea', url: '/' },
+};
 import SoundwaveDivider from '@/components/SoundwaveDivider';
 import SocialCards from '@/components/SocialCards';
 
@@ -30,7 +39,7 @@ export default async function HomePage() {
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
             <Image
-              src="https://picsum.photos/seed/willowbrook-hero/800/600"
+              src="https://picsum.photos/seed/huwlatimeraudiology-hero/800/600"
               alt=""
               fill
               priority
@@ -83,7 +92,7 @@ export default async function HomePage() {
       <section className="bg-sage-700 text-linen">
         <div className="mx-auto max-w-content px-4 py-14 text-center sm:px-6">
           <h2 className="font-display text-3xl font-semibold">{home.ctaTitle}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-sage-100">{home.ctaBody}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-black">{home.ctaBody}</p>
           <Link
             href="/book-appointment"
             className="mt-8 inline-block rounded-full bg-clay px-6 py-3 text-base font-semibold text-linen transition-colors hover:bg-clay-dark"

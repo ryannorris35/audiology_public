@@ -1,6 +1,15 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getDictionary } from '@/lib/i18n/getDictionary';
 import SoundwaveDivider from '@/components/SoundwaveDivider';
+
+export const metadata: Metadata = {
+  title: 'Ear Wax Removal Swansea | Micro-Suction Specialist',
+  description:
+    'Safe, gentle micro-suction ear wax removal in Swansea by a registered hearing care practitioner. Fast appointments, no irrigation, suitable for all ages.',
+  alternates: { canonical: '/micro-suction' },
+  openGraph: { title: 'Micro-Suction Ear Wax Removal Swansea | Huw Latimer', url: '/micro-suction' },
+};
 
 export default async function MicroSuctionPage() {
   const dict = await getDictionary();

@@ -1,6 +1,15 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getDictionary } from '@/lib/i18n/getDictionary';
 import SoundwaveDivider from '@/components/SoundwaveDivider';
+
+export const metadata: Metadata = {
+  title: 'Hearing Aids Swansea | Fittings, Types & Aftercare',
+  description:
+    'Expert hearing aid fitting and aftercare in Swansea. Guidance on the right hearing aid for your lifestyle and level of hearing loss from a registered practitioner.',
+  alternates: { canonical: '/types-of-hearing-aids' },
+  openGraph: { title: 'Hearing Aids Swansea | Huw Latimer', url: '/types-of-hearing-aids' },
+};
 
 export default async function TypesOfHearingAidsPage() {
   const dict = await getDictionary();

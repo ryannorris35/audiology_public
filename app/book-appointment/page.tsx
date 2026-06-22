@@ -1,4 +1,13 @@
+import type { Metadata } from 'next';
 import { getDictionary, getCurrentLocale } from '@/lib/i18n/getDictionary';
+
+export const metadata: Metadata = {
+  title: 'Book a Hearing Appointment Swansea',
+  description:
+    'Book your hearing care appointment online in minutes. Micro-suction ear wax removal, hearing assessments and hearing aid fittings in Swansea.',
+  alternates: { canonical: '/book-appointment' },
+  openGraph: { title: 'Book a Hearing Appointment | Huw Latimer Swansea', url: '/book-appointment' },
+};
 import BookingForm from '@/components/BookingForm';
 import SoundwaveDivider from '@/components/SoundwaveDivider';
 

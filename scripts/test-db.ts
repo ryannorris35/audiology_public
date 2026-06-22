@@ -27,7 +27,7 @@ import VisitorLog from '../lib/models/VisitorLog';
 async function main() {
   console.log('Connecting to MongoDB...');
   console.log(`  MONGODB_URI: ${process.env.MONGODB_URI || '(not set)'}`);
-  console.log(`  MONGODB_DB_NAME: ${process.env.MONGODB_DB_NAME || 'willowbrook_hearing (default)'}`);
+  console.log(`  MONGODB_DB_NAME: ${process.env.MONGODB_DB_NAME || 'huwlatimeraudiology_hearing (default)'}`);
 
   await connectToDatabase();
   console.log('✔ Connected.\n');

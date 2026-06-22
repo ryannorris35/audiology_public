@@ -1,5 +1,14 @@
+import type { Metadata } from 'next';
 import { getDictionary } from '@/lib/i18n/getDictionary';
 import SoundwaveDivider from '@/components/SoundwaveDivider';
+
+export const metadata: Metadata = {
+  title: 'Hearing Impairment Swansea | Causes, Signs & Help',
+  description:
+    'Understanding hearing impairment — its causes, signs and treatment options. Get expert help from a registered audiologist in Swansea.',
+  alternates: { canonical: '/about-hearing-impairment' },
+  openGraph: { title: 'Hearing Impairment Help Swansea | Huw Latimer', url: '/about-hearing-impairment' },
+};
 
 export default async function AboutHearingImpairmentPage() {
   const dict = await getDictionary();

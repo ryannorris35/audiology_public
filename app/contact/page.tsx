@@ -1,6 +1,15 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getDictionary } from '@/lib/i18n/getDictionary';
 import SoundwaveDivider from '@/components/SoundwaveDivider';
+
+export const metadata: Metadata = {
+  title: 'Contact | Audiologist Swansea',
+  description:
+    'Contact Huw Latimer Hearing Care in Swansea. Book a micro-suction ear wax removal, hearing assessment or hearing aid appointment.',
+  alternates: { canonical: '/contact' },
+  openGraph: { title: 'Contact Huw Latimer | Audiologist Swansea', url: '/contact' },
+};
 
 export default async function ContactPage() {
   const dict = await getDictionary();
@@ -13,7 +22,7 @@ export default async function ContactPage() {
           <div className="relative mx-auto aspect-square w-48 overflow-hidden rounded-full border-4 border-linen sm:w-56 lg:mx-0">
             {/* Placeholder portrait — replace with a real, consented photo before launch. */}
             <Image
-              src="https://picsum.photos/seed/willowbrook-practitioner/400/400"
+              src="https://picsum.photos/seed/huwlatimeraudiology-practitioner/400/400"
               alt={contact.name}
               fill
               className="object-cover"
