@@ -238,14 +238,14 @@ const en: Dictionary = {
   contact: {
     title: 'Contact Us',
     detailsTitle: 'Contact Details',
-    name: 'Huw Latimer',
+    name: 'Huw Robert Latimer',
     role: 'Registered Hearing Care Practitioner',
-    email: 'huw.latimer.audiologist@gmail.com',
-    phone: '+44 1234 567 890',
-    address: 'Viney Hearing Care, High Street, Newtown, United Kingdom',
+    email: 'huw.latimer.audiology@gmail.com',
+    phone: '01792 218721',
+    address: '16A Axis Court, Mallard Way, Llansamlet, Swansea SA7 0AJ',
     aboutMeTitle: 'About Me',
     aboutMeBody: [
-      "Hello, I'm Jordan — a registered hearing care practitioner with a particular interest in helping people feel comfortable and informed about their hearing health, often for the very first time.",
+      "Hello, I'm Huw — a registered hearing care practitioner with a particular interest in helping people feel comfortable and informed about their hearing health, often for the very first time.",
       'I got into this profession after watching a close family member struggle for years before finally getting help with their hearing — and seeing the difference it made once they did. That experience shapes how I work today: I never rush an appointment, I explain things in plain English, and I always make sure you understand your options before any decisions are made.',
       'Outside of clinic hours, I volunteer with local community groups to help raise awareness of hearing health, particularly among older residents who may not realise how much support is available.',
     ],
@@ -258,9 +258,8 @@ const en: Dictionary = {
     ],
     workplaceTitle: "Where You'll Find Me",
     workplaceBody: [
-      'I am proud to be a resident practitioner at Viney Hearing Care, a well-established independent clinic offering hearing assessments, ear wax removal and hearing aid services in a calm, welcoming environment.',
-      'The clinic is designed with accessibility in mind, with step-free access, plenty of seating in the waiting area, and parking nearby. The team places great importance on giving every patient the time they need, without the feeling of being rushed that can sometimes come with larger services.',
-      "You can find out more about the clinic, including opening hours and directions, on the Viney Hearing Care website.",
+      'I am a resident practitioner at Viney Hearing Care — a well-established independent clinic offering hearing assessments, ear wax removal and hearing aid services across South Wales.',
+      "You can find out more about the clinic, including full opening hours and directions, on the Viney Hearing Care website.",
     ],
   },
   booking: {

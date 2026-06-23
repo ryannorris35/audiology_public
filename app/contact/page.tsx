@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getDictionary } from '@/lib/i18n/getDictionary';
 import SoundwaveDivider from '@/components/SoundwaveDivider';
+import ClinicLocations from '@/components/ClinicLocations';
 
 export const metadata: Metadata = {
   title: 'Contact | Audiologist Swansea',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/contact' },
   openGraph: { title: 'Contact Huw Latimer | Audiologist Swansea', url: '/contact' },
 };
+
 
 export default async function ContactPage() {
   const dict = await getDictionary();
@@ -20,13 +22,13 @@ export default async function ContactPage() {
       <section className="bg-sage-600 text-linen">
         <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[280px_1fr]">
           <div className="relative mx-auto aspect-square w-48 overflow-hidden rounded-full border-4 border-linen sm:w-56 lg:mx-0">
-            {/* Placeholder portrait — replace with a real, consented photo before launch. */}
             <Image
-              src="https://picsum.photos/seed/huwlatimeraudiology-practitioner/400/400"
+              src="/images/huw-robert-latimer.jpg"
               alt={contact.name}
               fill
-              className="object-cover"
+              className="object-cover object-center"
               sizes="224px"
+              unoptimized
             />
           </div>
           <div className="text-center lg:text-left">
@@ -67,7 +69,8 @@ export default async function ContactPage() {
                           href="https://www.vineyhearingcare.co.uk/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-semibold text-sage-700 hover:text-clay-dark"
+                          className="font-semibold hover:opacity-80"
+                          style={{ color: '#1877F2' }}
                         >
                           Viney Hearing Care website
                         </a>
@@ -79,6 +82,8 @@ export default async function ContactPage() {
                   </p>
                 ))}
               </div>
+
+              <ClinicLocations />
             </div>
 
             <aside className="rounded-xl border border-sand-dark bg-sand p-6">
@@ -87,7 +92,7 @@ export default async function ContactPage() {
                 <div>
                   <dt className="font-semibold text-bark">{dict.booking.fields.email}</dt>
                   <dd>
-                    <a href={`mailto:${contact.email}`} className="text-bark hover:text-clay-dark">
+                    <a href={`mailto:${contact.email}`} className="text-bark hover:text-clay-dark break-all">
                       {contact.email}
                     </a>
                   </dd>
@@ -101,8 +106,8 @@ export default async function ContactPage() {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-bark">{contact.detailsTitle}</dt>
-                  <dd>{contact.address}</dd>
+                  <dt className="font-semibold text-bark">Primary Clinic</dt>
+                  <dd className="leading-relaxed">{contact.address}</dd>
                 </div>
               </dl>
             </aside>

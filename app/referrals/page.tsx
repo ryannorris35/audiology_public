@@ -62,11 +62,13 @@ export default async function ReferralsPage() {
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
               <Image
-                src="https://picsum.photos/seed/referral-community/800/600"
-                alt="Two people talking and smiling"
+                src="/images/referral-friends.jpg"
+                alt="Two friends sharing good news about hearing care"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+                unoptimized
               />
             </div>
             <div>

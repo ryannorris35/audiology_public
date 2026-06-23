@@ -33,7 +33,7 @@ interface BookingEmailDetails {
  */
 export async function sendBookingConfirmation(details: BookingEmailDetails) {
   const transporter = getTransporter();
-  const from = process.env.SMTP_FROM || 'huw.latimer.audiologist@gmail.com';
+  const from = process.env.SMTP_FROM || 'huw.latimer.audiology@gmail.com';
 
   const subject = 'Your appointment request — Huw Latimer Hearing Care';
   const html = `
@@ -86,7 +86,7 @@ interface ReferralEmailDetails {
 export async function sendReferralNotification(details: ReferralEmailDetails) {
   const transporter = getTransporter();
   const notifyEmail = process.env.NOTIFY_EMAIL;
-  const from = process.env.SMTP_FROM || 'huw.latimer.audiologist@gmail.com';
+  const from = process.env.SMTP_FROM || 'huw.latimer.audiology@gmail.com';
 
   if (!notifyEmail) {
     // eslint-disable-next-line no-console
@@ -126,7 +126,7 @@ export async function sendReferralNotification(details: ReferralEmailDetails) {
 
 export async function sendReferralConfirmation(details: ReferralEmailDetails) {
   const transporter = getTransporter();
-  const from = process.env.SMTP_FROM || 'huw.latimer.audiologist@gmail.com';
+  const from = process.env.SMTP_FROM || 'huw.latimer.audiology@gmail.com';
 
   const subject = 'Your referral has been received — Huw Latimer Hearing Care';
   const html = `

@@ -46,6 +46,7 @@ export default function Footer({ dict }: FooterProps) {
     { href: '/micro-suction', label: dict.nav.microSuction },
     { href: '/types-of-hearing-aids', label: dict.nav.hearingAids },
     { href: '/contact', label: dict.nav.contact },
+    { href: '/referrals', label: dict.nav.referrals },
     { href: '/book-appointment', label: dict.nav.bookAppointment },
   ];
 

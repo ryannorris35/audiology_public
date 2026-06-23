@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { acceptCookies, mockVisitorApi } from '../helpers';
+import { suppressCookieBanner, mockVisitorApi } from '../helpers';
 
 test.beforeEach(async ({ page }) => {
+  await suppressCookieBanner(page);
   await mockVisitorApi(page);
   await page.goto('/');
-  await acceptCookies(page);
 });
 
 test('footer is present on every page', async ({ page }) => {
@@ -37,6 +37,11 @@ test('footer Instagram button links to correct profile', async ({ page }) => {
 test('footer quick links navigate correctly', async ({ page }) => {
   await page.locator('footer').getByRole('link', { name: /micro.suction/i }).click();
   await expect(page).toHaveURL('/micro-suction');
+});
+
+test('footer referrals link navigates correctly', async ({ page }) => {
+  await page.locator('footer').getByRole('link', { name: /referral/i }).click();
+  await expect(page).toHaveURL('/referrals');
 });
 
 test('footer book appointment link navigates correctly', async ({ page }) => {
