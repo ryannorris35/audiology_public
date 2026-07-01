@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { getDictionary, getCurrentLocale } from '@/lib/i18n/getDictionary';
+import { blueprintBookingUrl } from '@/lib/utm';
+import BookingForm from '@/components/BookingForm';
+import SoundwaveDivider from '@/components/SoundwaveDivider';
 
 export const metadata: Metadata = {
   title: 'Book a Hearing Appointment Swansea',
@@ -8,13 +11,15 @@ export const metadata: Metadata = {
   alternates: { canonical: '/book-appointment' },
   openGraph: { title: 'Book a Hearing Appointment | Huw Latimer Swansea', url: '/book-appointment' },
 };
-import BookingForm from '@/components/BookingForm';
-import SoundwaveDivider from '@/components/SoundwaveDivider';
 
 export default async function BookAppointmentPage() {
   const dict = await getDictionary();
   const locale = await getCurrentLocale();
   const { booking } = dict;
+
+  // When BLUEPRINT_BOOKING_URL is set, redirect patients directly to Blueprint
+  // with UTM parameters so the source is tracked in analytics.
+  const blueprintUrl = blueprintBookingUrl('book-appointment-page');
 
   return (
     <>
@@ -31,8 +36,24 @@ export default async function BookAppointmentPage() {
       <section className="bg-linen">
         <div className="mx-auto max-w-content px-4 py-14 sm:px-6">
           <div className="mx-auto max-w-3xl">
-            <p className="mb-6 text-sm text-black">{booking.requiredHint}</p>
-            <BookingForm dict={dict} locale={locale} />
+            {blueprintUrl ? (
+              <div className="text-center">
+                <p className="mb-8 text-sm text-bark-light">{booking.clinicNotice}</p>
+                <a
+                  href={blueprintUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-lg bg-sage-600 px-8 py-4 font-semibold text-linen shadow hover:bg-sage-700 transition-colors"
+                >
+                  Book your appointment
+                </a>
+              </div>
+            ) : (
+              <>
+                <p className="mb-6 text-sm text-black">{booking.requiredHint}</p>
+                <BookingForm dict={dict} locale={locale} />
+              </>
+            )}
           </div>
         </div>
       </section>
